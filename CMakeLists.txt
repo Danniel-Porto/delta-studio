@@ -320,12 +320,12 @@ target_link_libraries(delta-core PUBLIC
     d3d9
     d3d10
     d3d11
-    ${D3DX_LIBS}/d3dx9.lib
-    ${D3DX_LIBS}/d3dx9d.lib
-    ${D3DX_LIBS}/d3dx10d.lib
-    ${D3DX_LIBS}/d3dx10.lib
-    ${D3DX_LIBS}/d3dx11.lib
-    ${D3DX_LIBS}/d3dx11d.lib
+    $<$<CONFIG:Debug>:${D3DX_LIBS}/d3dx9d.lib>
+    $<$<NOT:$<CONFIG:Debug>>:${D3DX_LIBS}/d3dx9.lib>
+    $<$<CONFIG:Debug>:${D3DX_LIBS}/d3dx10d.lib>
+    $<$<NOT:$<CONFIG:Debug>>:${D3DX_LIBS}/d3dx10.lib>
+    $<$<CONFIG:Debug>:${D3DX_LIBS}/d3dx11d.lib>
+    $<$<NOT:$<CONFIG:Debug>>:${D3DX_LIBS}/d3dx11.lib>
     ${D3DX_LIBS}/d3dxof.lib
 
     # DXGI

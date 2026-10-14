@@ -16,11 +16,10 @@ ysAudioFile::Error ysWindowsAudioWaveFile::OpenFile(const char *fname) {
     ysAudioFile::Error error = ysAudioFile::OpenFile(fname);
     if (error != Error::None) return error;
 
-    char localFname[256];
-    strcpy_s(localFname, 256, fname);
+    std::string localFname = fname;
 
     // Attempt to open the file
-    HMMIO file = mmioOpen(localFname, 0, MMIO_READ);
+    HMMIO file = mmioOpen(&localFname[0], 0, MMIO_READ);
 
     if (file == NULL) {
         return Error::CouldNotOpenFile;
